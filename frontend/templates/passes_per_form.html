@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2> Search for passes through a desired station. </h2>
+
+  <form method="POST" action="PassesPerForm/fetch">
+    {% csrf_token %}
+    
+    {{ station }}
+    <label for="from">From:</label>
+    <input type="date" id="from" name="from">
+    <label for="to">To:</label>
+    <input type="date" id="to" name="to">
+    
+    <button type="submit">Search for passes</button>
+  </form>
+    
+{% endblock %}

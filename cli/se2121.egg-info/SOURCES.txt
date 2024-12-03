@@ -1,0 +1,8 @@
+cli.py
+setup.py
+se2121.egg-info/PKG-INFO
+se2121.egg-info/SOURCES.txt
+se2121.egg-info/dependency_links.txt
+se2121.egg-info/entry_points.txt
+se2121.egg-info/requires.txt
+se2121.egg-info/top_level.txt

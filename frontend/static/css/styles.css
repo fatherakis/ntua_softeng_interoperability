@@ -1,0 +1,19 @@
+li a {
+    color: red;
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+html  
+{  
+    background: white url("../images/background.png") no-repeat;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}  
+
+

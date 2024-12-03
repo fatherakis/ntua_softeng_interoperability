@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        se2121=cli:cli
+    

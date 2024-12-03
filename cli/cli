@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+echo "Starting CLI"
+source .env/bin/activate 
+
+#sig_term handler (easier deactivation)
+trap ctrl_c INT
+ctrl_c()
+{
+    echo -e "\nThanks for using our interoperability CLI :)"
+    deactivate
+    kill -TERM $$
+}
+

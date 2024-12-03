@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2> Get the number of passes from stations of <em>Operator 1</em> by cars with tag of <em>Operator 2</em>, as well as their total cost. </h2>
+
+  <form method="POST" action="PassesCostForm/fetch">
+    {% csrf_token %}
+    
+    {{ operators }}
+    <label for="from">From:</label>
+    <input type="date" id="from" name="from">
+    <label for="to">To:</label>
+    <input type="date" id ="to" name="to">
+    
+    <button type="submit">Get cost</button>
+  </form>
+    
+{% endblock %}

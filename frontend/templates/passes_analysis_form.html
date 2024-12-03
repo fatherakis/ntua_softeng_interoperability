@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2> Search for passes through stations of <em>Operator 1</em> by cars with tag of <em>Operator 2</em>. </h2>
+
+  <form method="POST" action="PassesAnalysisForm/fetch">
+    {% csrf_token %}
+    
+    {{ operators }}
+
+    <label for="from">From:</label>
+    <input type="date" id="from" name="from">
+    <label for="to">To:</label>
+    <input type="date" id ="to" name="to">
+    
+    <button type="submit">Get analysis</button>
+  </form>
+    
+{% endblock %}

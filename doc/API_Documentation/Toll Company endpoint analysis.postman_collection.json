@@ -1,0 +1,606 @@
+{
+	"info": {
+		"_postman_id": "3dcec73a-960c-40cc-9cd3-3982cfc9e127",
+		"name": "Toll Company endpoint analysis",
+		"description": "TL21-21 is a web app who's goal is to achieve interoperability between the Toll Stations of the Greek highway system. It allows easy access for toll company employees to add recorded events and offers quick processing of information.\n\n**Environmental Variables:**\n\n| Environmental Variable Name | Description |\n| --- | --- |\n| baseurl | The URL to the server's api.  <br>(https://localhost:9103/interoperability/api in our case) |",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PassesPerStation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/PassesPerStation/AO10/20201001/20201131",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"PassesPerStation",
+						"AO10",
+						"20201001",
+						"20201131"
+					]
+				},
+				"description": "Passes per Station returns all the passes that happened in a station in a certain time frame.\n\nTo use the Passes per Station command you want to insert the command /PassesPerStation to the base url, then the toll company (/station) and the time frame you care about in YYYYMMDD format (start_day/end_day). Hence the url should look something like this: [https://localhost:9103/interoperability/api/PassesPerStation/AO10/20201001/20201031](https://localhost:9103/interoperability/api/PassesPerStation/AO10/20201001/20201031`)"
+			},
+			"response": [
+				{
+					"name": "PassesPerStation",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/PassesPerStation/AO10/20201001/20201031",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"PassesPerStation",
+								"AO10",
+								"20201001",
+								"20201031"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "839"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.8.10"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Feb 2022 18:44:55 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"Station\": \"AO10\",\n    \"StationOperator\": \"aodos\",\n    \"RequestTimestamp\": \"2022-02-25 20:44:55\",\n    \"PeriodFrom\": \"2020-10-01 00:00:00\",\n    \"PeriodTo\": \"2020-10-31 00:00:00\",\n    \"NumberOfPasses\": 4,\n    \"PassesList\": [\n        {\n            \"PassIndex\": 1,\n            \"PassID\": \"CAZ6747049\",\n            \"PassTimeStamp\": \"2020-10-22 10:53:00\",\n            \"VehicleID\": \"DP11ENT03275\",\n            \"TagProvider\": \"aodos\",\n            \"PassType\": \"home\",\n            \"PassCharge\": 3.1\n        },\n        {\n            \"PassIndex\": 2,\n            \"PassID\": \"OMC8071708\",\n            \"PassTimeStamp\": \"2020-10-28 04:23:00\",\n            \"VehicleID\": \"BM25PHF40639\",\n            \"TagProvider\": \"aodos\",\n            \"PassType\": \"home\",\n            \"PassCharge\": 13\n        },\n        {\n            \"PassIndex\": 3,\n            \"PassID\": \"SSO5296143\",\n            \"PassTimeStamp\": \"2020-10-08 17:43:00\",\n            \"VehicleID\": \"MX39VOS38645\",\n            \"TagProvider\": \"aodos\",\n            \"PassType\": \"home\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 4,\n            \"PassID\": \"WJS2457044\",\n            \"PassTimeStamp\": \"2020-10-29 11:56:00\",\n            \"VehicleID\": \"QW79CHL42244\",\n            \"TagProvider\": \"kentriki_odos\",\n            \"PassType\": \"visitor\",\n            \"PassCharge\": 2.8\n        }\n    ]\n}"
+				},
+				{
+					"name": "Invalid Input",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/PassesPerStation/AO10/20201001/20201131",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"PassesPerStation",
+								"AO10",
+								"20201001",
+								"20201131"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.8.10"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Feb 2022 18:45:36 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Bad Request (400)\"\n}"
+				}
+			]
+		},
+		{
+			"name": "PassesAnalysis",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/PassesAnalysis/AO/GF/20200101/20201031",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"PassesAnalysis",
+						"AO",
+						"GF",
+						"20200101",
+						"20201031"
+					]
+				},
+				"description": "Passes Analysis returns all the passes that happened in a station (station1) from the vehicles registered at another station (station2) in a certain time frame.\n\nTo use the Passes Analysis command you want to insert the command /PassesAnalysis to the base url, then the toll companies (/station1/station2) and the time frame you care about in YYYYMMDD format (/start_day/end_day). Hence the url should look something like this: {{baseurl}}/PassesAnalysis/AO/GF/20200101/20201031"
+			},
+			"response": [
+				{
+					"name": "PassesAnalysis",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/PassesAnalysis/AO/GF/20200101/20201031",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"PassesAnalysis",
+								"AO",
+								"GF",
+								"20200101",
+								"20201031"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "14589"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.8.10"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Feb 2022 14:39:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"op1_ID\": \"AO\",\n    \"op2_ID\": \"GF\",\n    \"RequestTimestamp\": \"2022-02-25 16:39:01\",\n    \"PeriodFrom\": \"2020-01-01 00:00:00\",\n    \"PeriodTo\": \"2020-10-31 00:00:00\",\n    \"NumberOfPasses\": 103,\n    \"PassesList\": [\n        {\n            \"PassIndex\": 1,\n            \"PassID\": \"GXA2852854\",\n            \"StationID\": \"AO00\",\n            \"PassTimeStamp\": \"2020-08-21 21:11:00\",\n            \"VehicleID\": \"IO09FGE68100\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 2,\n            \"PassID\": \"MHE8475516\",\n            \"StationID\": \"AO00\",\n            \"PassTimeStamp\": \"2020-03-13 00:30:00\",\n            \"VehicleID\": \"MP14WFM40909\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 3,\n            \"PassID\": \"MJU8833415\",\n            \"StationID\": \"AO00\",\n            \"PassTimeStamp\": \"2020-03-01 18:10:00\",\n            \"VehicleID\": \"YX66XYW62640\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 4,\n            \"PassID\": \"TTC4928259\",\n            \"StationID\": \"AO00\",\n            \"PassTimeStamp\": \"2020-04-04 10:42:00\",\n            \"VehicleID\": \"EN26OAB52983\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 5,\n            \"PassID\": \"TUV4386409\",\n            \"StationID\": \"AO00\",\n            \"PassTimeStamp\": \"2020-07-04 04:12:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 6,\n            \"PassID\": \"UPZ8966863\",\n            \"StationID\": \"AO00\",\n            \"PassTimeStamp\": \"2020-02-26 13:29:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 7,\n            \"PassID\": \"BLT0403457\",\n            \"StationID\": \"AO01\",\n            \"PassTimeStamp\": \"2020-06-26 14:33:00\",\n            \"VehicleID\": \"EN26OAB52983\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 8,\n            \"PassID\": \"HXD3471114\",\n            \"StationID\": \"AO01\",\n            \"PassTimeStamp\": \"2020-02-17 02:05:00\",\n            \"VehicleID\": \"PF04UCA93312\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 9,\n            \"PassID\": \"PFL1418568\",\n            \"StationID\": \"AO01\",\n            \"PassTimeStamp\": \"2020-01-02 10:30:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 10,\n            \"PassID\": \"QOQ4002291\",\n            \"StationID\": \"AO01\",\n            \"PassTimeStamp\": \"2020-04-28 03:33:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 11,\n            \"PassID\": \"WJZ9192516\",\n            \"StationID\": \"AO01\",\n            \"PassTimeStamp\": \"2020-01-17 12:15:00\",\n            \"VehicleID\": \"SL09NOT64494\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 12,\n            \"PassID\": \"WYZ3558779\",\n            \"StationID\": \"AO02\",\n            \"PassTimeStamp\": \"2020-04-18 10:42:00\",\n            \"VehicleID\": \"WU78BMX13511\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 13,\n            \"PassID\": \"AVS8986675\",\n            \"StationID\": \"AO03\",\n            \"PassTimeStamp\": \"2020-09-12 13:51:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 14,\n            \"PassID\": \"EOR5136552\",\n            \"StationID\": \"AO03\",\n            \"PassTimeStamp\": \"2020-01-04 22:43:00\",\n            \"VehicleID\": \"UF84JOS00561\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 15,\n            \"PassID\": \"OFB7049229\",\n            \"StationID\": \"AO03\",\n            \"PassTimeStamp\": \"2020-09-24 05:03:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 16,\n            \"PassID\": \"UYN4565166\",\n            \"StationID\": \"AO03\",\n            \"PassTimeStamp\": \"2020-08-16 01:32:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 17,\n            \"PassID\": \"XMH3058171\",\n            \"StationID\": \"AO03\",\n            \"PassTimeStamp\": \"2020-10-10 15:54:00\",\n            \"VehicleID\": \"PF04UCA93312\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 18,\n            \"PassID\": \"XXE3141181\",\n            \"StationID\": \"AO03\",\n            \"PassTimeStamp\": \"2020-01-18 14:12:00\",\n            \"VehicleID\": \"CK97FAU13897\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 19,\n            \"PassID\": \"APE3872812\",\n            \"StationID\": \"AO04\",\n            \"PassTimeStamp\": \"2020-03-17 05:18:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 20,\n            \"PassID\": \"BXR5601875\",\n            \"StationID\": \"AO04\",\n            \"PassTimeStamp\": \"2020-07-17 22:07:00\",\n            \"VehicleID\": \"EN26OAB52983\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 21,\n            \"PassID\": \"BZI9497809\",\n            \"StationID\": \"AO04\",\n            \"PassTimeStamp\": \"2020-06-14 19:57:00\",\n            \"VehicleID\": \"QN12NTR81378\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 22,\n            \"PassID\": \"FJJ8166829\",\n            \"StationID\": \"AO04\",\n            \"PassTimeStamp\": \"2020-07-06 14:04:00\",\n            \"VehicleID\": \"EN26OAB52983\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 23,\n            \"PassID\": \"PDT5093236\",\n            \"StationID\": \"AO04\",\n            \"PassTimeStamp\": \"2020-07-25 17:36:00\",\n            \"VehicleID\": \"QN12NTR81378\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 24,\n            \"PassID\": \"SJH3598048\",\n            \"StationID\": \"AO04\",\n            \"PassTimeStamp\": \"2020-02-29 18:52:00\",\n            \"VehicleID\": \"JE65QJK64802\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 25,\n            \"PassID\": \"FUG1782987\",\n            \"StationID\": \"AO05\",\n            \"PassTimeStamp\": \"2020-05-30 02:59:00\",\n            \"VehicleID\": \"PF04UCA93312\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 26,\n            \"PassID\": \"LUX4086380\",\n            \"StationID\": \"AO05\",\n            \"PassTimeStamp\": \"2020-09-09 01:06:00\",\n            \"VehicleID\": \"IO09FGE68100\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 27,\n            \"PassID\": \"QQJ6569666\",\n            \"StationID\": \"AO05\",\n            \"PassTimeStamp\": \"2020-08-02 03:24:00\",\n            \"VehicleID\": \"KW50MJG67260\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 28,\n            \"PassID\": \"VPX5253801\",\n            \"StationID\": \"AO05\",\n            \"PassTimeStamp\": \"2020-08-27 03:59:00\",\n            \"VehicleID\": \"SL09NOT64494\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 29,\n            \"PassID\": \"WTN0798169\",\n            \"StationID\": \"AO05\",\n            \"PassTimeStamp\": \"2020-03-06 11:31:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 30,\n            \"PassID\": \"AXI3094712\",\n            \"StationID\": \"AO06\",\n            \"PassTimeStamp\": \"2020-10-18 05:34:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 31,\n            \"PassID\": \"UWD1510733\",\n            \"StationID\": \"AO06\",\n            \"PassTimeStamp\": \"2020-04-03 22:37:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 32,\n            \"PassID\": \"KLR9827026\",\n            \"StationID\": \"AO07\",\n            \"PassTimeStamp\": \"2020-01-01 03:22:00\",\n            \"VehicleID\": \"JE65QJK64802\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 33,\n            \"PassID\": \"KUU4984685\",\n            \"StationID\": \"AO07\",\n            \"PassTimeStamp\": \"2020-01-10 12:20:00\",\n            \"VehicleID\": \"MA30QLI76818\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 34,\n            \"PassID\": \"DPG0999196\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-09-02 19:48:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 35,\n            \"PassID\": \"EOI2690377\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-08-25 14:59:00\",\n            \"VehicleID\": \"WU78BMX13511\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 36,\n            \"PassID\": \"HZM1240933\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-05-30 17:28:00\",\n            \"VehicleID\": \"YX66XYW62640\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 37,\n            \"PassID\": \"IIF9063642\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-03-13 13:45:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 38,\n            \"PassID\": \"KPV7352201\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-06-30 14:23:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 39,\n            \"PassID\": \"KWO0286103\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-08-31 09:23:00\",\n            \"VehicleID\": \"KW50MJG67260\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 40,\n            \"PassID\": \"LOQ2561697\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-08-04 19:06:00\",\n            \"VehicleID\": \"UF84JOS00561\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 41,\n            \"PassID\": \"MLT3210600\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-02-17 13:21:00\",\n            \"VehicleID\": \"CK97FAU13897\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 42,\n            \"PassID\": \"MZJ4910589\",\n            \"StationID\": \"AO08\",\n            \"PassTimeStamp\": \"2020-06-03 22:11:00\",\n            \"VehicleID\": \"QN12NTR81378\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 43,\n            \"PassID\": \"LZM7451174\",\n            \"StationID\": \"AO09\",\n            \"PassTimeStamp\": \"2020-10-18 16:31:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 44,\n            \"PassID\": \"OIT3257175\",\n            \"StationID\": \"AO09\",\n            \"PassTimeStamp\": \"2020-06-30 17:06:00\",\n            \"VehicleID\": \"JE65QJK64802\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 45,\n            \"PassID\": \"QEB7111894\",\n            \"StationID\": \"AO09\",\n            \"PassTimeStamp\": \"2020-05-14 14:51:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 46,\n            \"PassID\": \"VBJ1669962\",\n            \"StationID\": \"AO09\",\n            \"PassTimeStamp\": \"2020-02-20 19:01:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 47,\n            \"PassID\": \"VDK1435778\",\n            \"StationID\": \"AO09\",\n            \"PassTimeStamp\": \"2020-10-09 12:00:00\",\n            \"VehicleID\": \"JE65QJK64802\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 48,\n            \"PassID\": \"CGR5694652\",\n            \"StationID\": \"AO10\",\n            \"PassTimeStamp\": \"2020-01-23 23:27:00\",\n            \"VehicleID\": \"QN12NTR81378\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 49,\n            \"PassID\": \"EPS3978908\",\n            \"StationID\": \"AO10\",\n            \"PassTimeStamp\": \"2020-07-19 06:00:00\",\n            \"VehicleID\": \"UF84JOS00561\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 50,\n            \"PassID\": \"EUF8014968\",\n            \"StationID\": \"AO10\",\n            \"PassTimeStamp\": \"2020-03-20 21:23:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 51,\n            \"PassID\": \"FDZ1659911\",\n            \"StationID\": \"AO10\",\n            \"PassTimeStamp\": \"2020-04-29 22:35:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 52,\n            \"PassID\": \"KOM2913449\",\n            \"StationID\": \"AO10\",\n            \"PassTimeStamp\": \"2020-08-23 05:58:00\",\n            \"VehicleID\": \"WU78BMX13511\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 53,\n            \"PassID\": \"UEY6927293\",\n            \"StationID\": \"AO10\",\n            \"PassTimeStamp\": \"2020-03-18 06:53:00\",\n            \"VehicleID\": \"MA30QLI76818\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 54,\n            \"PassID\": \"ZSF2239697\",\n            \"StationID\": \"AO10\",\n            \"PassTimeStamp\": \"2020-01-03 10:13:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 55,\n            \"PassID\": \"IML2755803\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-09-21 13:38:00\",\n            \"VehicleID\": \"SL09NOT64494\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 56,\n            \"PassID\": \"JVT6087815\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-06-07 09:09:00\",\n            \"VehicleID\": \"KW50MJG67260\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 57,\n            \"PassID\": \"NPY3597868\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-03-28 08:42:00\",\n            \"VehicleID\": \"UF84JOS00561\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 58,\n            \"PassID\": \"OOI5648905\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-08-23 09:24:00\",\n            \"VehicleID\": \"CK97FAU13897\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 59,\n            \"PassID\": \"OZI8746586\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-02-20 23:24:00\",\n            \"VehicleID\": \"MA30QLI76818\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 60,\n            \"PassID\": \"QDZ4401493\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-04-05 09:25:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 61,\n            \"PassID\": \"TRU1200911\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-08-03 18:05:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 62,\n            \"PassID\": \"TSQ5887140\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-09-09 12:09:00\",\n            \"VehicleID\": \"KW50MJG67260\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 63,\n            \"PassID\": \"WXS5491031\",\n            \"StationID\": \"AO11\",\n            \"PassTimeStamp\": \"2020-06-11 14:21:00\",\n            \"VehicleID\": \"UF84JOS00561\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 64,\n            \"PassID\": \"EUE3305234\",\n            \"StationID\": \"AO12\",\n            \"PassTimeStamp\": \"2020-07-22 01:39:00\",\n            \"VehicleID\": \"YX66XYW62640\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 65,\n            \"PassID\": \"HAP7988846\",\n            \"StationID\": \"AO12\",\n            \"PassTimeStamp\": \"2020-05-01 01:44:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 66,\n            \"PassID\": \"OPO0490005\",\n            \"StationID\": \"AO12\",\n            \"PassTimeStamp\": \"2020-07-20 06:45:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 67,\n            \"PassID\": \"DBN2394051\",\n            \"StationID\": \"AO13\",\n            \"PassTimeStamp\": \"2020-10-09 11:15:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 68,\n            \"PassID\": \"DVN5957376\",\n            \"StationID\": \"AO13\",\n            \"PassTimeStamp\": \"2020-06-12 12:24:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 69,\n            \"PassID\": \"GIU7276029\",\n            \"StationID\": \"AO13\",\n            \"PassTimeStamp\": \"2020-05-27 06:03:00\",\n            \"VehicleID\": \"MA30QLI76818\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 70,\n            \"PassID\": \"IXO2535174\",\n            \"StationID\": \"AO13\",\n            \"PassTimeStamp\": \"2020-05-18 04:11:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 71,\n            \"PassID\": \"JUY7799635\",\n            \"StationID\": \"AO13\",\n            \"PassTimeStamp\": \"2020-09-09 11:41:00\",\n            \"VehicleID\": \"CK97FAU13897\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 72,\n            \"PassID\": \"UWC0439515\",\n            \"StationID\": \"AO13\",\n            \"PassTimeStamp\": \"2020-04-02 02:59:00\",\n            \"VehicleID\": \"MP14WFM40909\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 73,\n            \"PassID\": \"CBW4196522\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-05-21 00:10:00\",\n            \"VehicleID\": \"MP14WFM40909\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 74,\n            \"PassID\": \"IEK7827847\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-03-04 14:02:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 75,\n            \"PassID\": \"JEO9368722\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-08-02 08:53:00\",\n            \"VehicleID\": \"PF04UCA93312\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 76,\n            \"PassID\": \"LLC3314301\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-03-07 00:28:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 77,\n            \"PassID\": \"QGP4014781\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-08-27 07:37:00\",\n            \"VehicleID\": \"WU78BMX13511\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 78,\n            \"PassID\": \"TNI3931250\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-05-26 11:06:00\",\n            \"VehicleID\": \"QN12NTR81378\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 79,\n            \"PassID\": \"UTE0750134\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-02-10 09:14:00\",\n            \"VehicleID\": \"CP56DAO45598\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 80,\n            \"PassID\": \"WMI2145511\",\n            \"StationID\": \"AO14\",\n            \"PassTimeStamp\": \"2020-07-18 19:00:00\",\n            \"VehicleID\": \"KW50MJG67260\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 81,\n            \"PassID\": \"GUK8624766\",\n            \"StationID\": \"AO15\",\n            \"PassTimeStamp\": \"2020-10-06 01:59:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 82,\n            \"PassID\": \"TII4149685\",\n            \"StationID\": \"AO15\",\n            \"PassTimeStamp\": \"2020-01-23 19:39:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 83,\n            \"PassID\": \"XME1158045\",\n            \"StationID\": \"AO15\",\n            \"PassTimeStamp\": \"2020-05-03 15:10:00\",\n            \"VehicleID\": \"JE65QJK64802\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 84,\n            \"PassID\": \"ZMN7800082\",\n            \"StationID\": \"AO15\",\n            \"PassTimeStamp\": \"2020-03-15 03:55:00\",\n            \"VehicleID\": \"YX66XYW62640\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 85,\n            \"PassID\": \"ZPA2856972\",\n            \"StationID\": \"AO15\",\n            \"PassTimeStamp\": \"2020-03-18 00:13:00\",\n            \"VehicleID\": \"EN26OAB52983\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 86,\n            \"PassID\": \"IIC9678272\",\n            \"StationID\": \"AO16\",\n            \"PassTimeStamp\": \"2020-06-27 19:54:00\",\n            \"VehicleID\": \"YX66XYW62640\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 87,\n            \"PassID\": \"JTT3401562\",\n            \"StationID\": \"AO16\",\n            \"PassTimeStamp\": \"2020-07-28 14:37:00\",\n            \"VehicleID\": \"EN26OAB52983\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 88,\n            \"PassID\": \"RPE9004402\",\n            \"StationID\": \"AO16\",\n            \"PassTimeStamp\": \"2020-01-18 21:07:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 89,\n            \"PassID\": \"RUL7766888\",\n            \"StationID\": \"AO16\",\n            \"PassTimeStamp\": \"2020-07-20 08:48:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 90,\n            \"PassID\": \"VPK3064915\",\n            \"StationID\": \"AO16\",\n            \"PassTimeStamp\": \"2020-08-04 08:32:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 91,\n            \"PassID\": \"YYV6016565\",\n            \"StationID\": \"AO16\",\n            \"PassTimeStamp\": \"2020-01-19 13:33:00\",\n            \"VehicleID\": \"CK97FAU13897\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 92,\n            \"PassID\": \"OJC2513168\",\n            \"StationID\": \"AO17\",\n            \"PassTimeStamp\": \"2020-03-31 18:51:00\",\n            \"VehicleID\": \"YX66XYW62640\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 93,\n            \"PassID\": \"CLD4076955\",\n            \"StationID\": \"AO18\",\n            \"PassTimeStamp\": \"2020-08-06 12:35:00\",\n            \"VehicleID\": \"SL09NOT64494\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 94,\n            \"PassID\": \"KLA0074514\",\n            \"StationID\": \"AO18\",\n            \"PassTimeStamp\": \"2020-08-13 20:38:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 95,\n            \"PassID\": \"NJH8000299\",\n            \"StationID\": \"AO18\",\n            \"PassTimeStamp\": \"2020-04-09 06:35:00\",\n            \"VehicleID\": \"CK97FAU13897\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 96,\n            \"PassID\": \"PCG6792267\",\n            \"StationID\": \"AO18\",\n            \"PassTimeStamp\": \"2020-06-13 09:20:00\",\n            \"VehicleID\": \"QN12NTR81378\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 97,\n            \"PassID\": \"ZIT4432864\",\n            \"StationID\": \"AO18\",\n            \"PassTimeStamp\": \"2020-01-02 06:37:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 98,\n            \"PassID\": \"ZWE1261155\",\n            \"StationID\": \"AO18\",\n            \"PassTimeStamp\": \"2020-09-09 23:19:00\",\n            \"VehicleID\": \"EN26OAB52983\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 99,\n            \"PassID\": \"ETJ5980178\",\n            \"StationID\": \"AO19\",\n            \"PassTimeStamp\": \"2020-03-20 13:23:00\",\n            \"VehicleID\": \"LM86GYO69819\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 100,\n            \"PassID\": \"FFW1552981\",\n            \"StationID\": \"AO19\",\n            \"PassTimeStamp\": \"2020-06-26 19:30:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 101,\n            \"PassID\": \"MPX8594276\",\n            \"StationID\": \"AO19\",\n            \"PassTimeStamp\": \"2020-09-24 20:25:00\",\n            \"VehicleID\": \"BY85QGR11636\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 102,\n            \"PassID\": \"NRJ0202889\",\n            \"StationID\": \"AO19\",\n            \"PassTimeStamp\": \"2020-02-07 12:43:00\",\n            \"VehicleID\": \"MA30QLI76818\",\n            \"PassCharge\": 2.8\n        },\n        {\n            \"PassIndex\": 103,\n            \"PassID\": \"QOD3992281\",\n            \"StationID\": \"AO19\",\n            \"PassTimeStamp\": \"2020-04-17 03:27:00\",\n            \"VehicleID\": \"XF28DGK65250\",\n            \"PassCharge\": 2.8\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "PassesCost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/PassesCost/AO/EG/20200101/20201231",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"PassesCost",
+						"AO",
+						"EG",
+						"20200101",
+						"20201231"
+					]
+				},
+				"description": "Passes Analysis returns the sum of all the passes that happened in a station (station1) from the vehicles registered at another station (station2) in a certain time frame.\n\nTo use the Passes Analysis command you want to insert the command /PassesCost o the base url, then the toll companies (/station1/station2) and the time frame you care about in YYYYMMDD format (/start_day/end_day). Hence the url should look something like this:\n\n[https://localhost:9103/interoperability/api/PassesCost/AO/EG/20200101/20201231](https://desktop.postman.com/?desktopVersion=9.13.0&userId=19708200&teamId=0)"
+			},
+			"response": [
+				{
+					"name": "PassesCost",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/PassesCost/AO/EG/20200101/20201231",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"PassesCost",
+								"AO",
+								"EG",
+								"20200101",
+								"20201231"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "160"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.8.10"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Feb 2022 14:42:54 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"op1_ID\": \"AO\",\n    \"op2_ID\": \"EG\",\n    \"RequestTimestamp\": \"2022-02-25 16:42:54\",\n    \"PeriodFrom\": \"2020-01-01\",\n    \"PeriodTo\": \"2020-12-31\",\n    \"NumberOfPasses\": 102,\n    \"PassesCost\": 285.6\n}"
+				}
+			]
+		},
+		{
+			"name": "ChargesBy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/ChargesBy/GF/20190101/20190630",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"ChargesBy",
+						"GF",
+						"20190101",
+						"20190630"
+					]
+				},
+				"description": "Charges By returns the sum of all passes that happened in a station by vehicles registered to other toll companies in a certain time frame.\n\nTo use the Charges By command you want to insert the command /ChargesBy to the base url, then the toll company (/station) and the time frame you care about in YYYYMMDD format (start_day/end_day). Hence the url should look something like this: [https://localhost:9103/interoperability/api/ChargesBy/GF/20190101/20190630](https://localhost:9103/interoperability/api/ChargesBy/GF/20190101/20190630`)"
+			},
+			"response": [
+				{
+					"name": "ChargesBy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/ChargesBy/GF/20190101/20190630",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"ChargesBy",
+								"GF",
+								"20190101",
+								"20190630"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "450"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.8.10"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 25 Feb 2022 18:36:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"op_ID\": \"GF\",\n    \"RequestTimestamp\": \"2022-02-25 20:36:12\",\n    \"PeriodFrom\": \"2019-01-01 00:00:00\",\n    \"PeriodTo\": \"2019-06-30 00:00:00\",\n    \"PPOList\": [\n        {\n            \"VisitingOperator\": \"AO\",\n            \"NumberOfPasses\": 2,\n            \"PassesCost\": 26\n        },\n        {\n            \"VisitingOperator\": \"KO\",\n            \"NumberOfPasses\": 1,\n            \"PassesCost\": 13\n        },\n        {\n            \"VisitingOperator\": \"MR\",\n            \"NumberOfPasses\": 2,\n            \"PassesCost\": 26\n        },\n        {\n            \"VisitingOperator\": \"NE\",\n            \"NumberOfPasses\": 1,\n            \"PassesCost\": 13\n        },\n        {\n            \"VisitingOperator\": \"OO\",\n            \"NumberOfPasses\": 2,\n            \"PassesCost\": 26\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Settlements",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/Settlements/KO",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"Settlements",
+						"KO"
+					]
+				},
+				"description": "Settlements returns the differences of income between passes that happened in a toll station by all other toll companies and the opposite one by one.\n\nTo use the Charges By command you want to insert the command /Settlements to the base url and then the toll company (/station). Hence the url should look something like this: [https://localhost:9103/interoperability/api/Settlements/GF](https://localhost:9103/interoperability/api/ChargesBy/GF/20190101/20190630`)"
+			},
+			"response": [
+				{
+					"name": "Settlements",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseurl}}/Settlements/KO",
+							"host": [
+								"{{baseurl}}"
+							],
+							"path": [
+								"Settlements",
+								"KO"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept, Cookie"
+						},
+						{
+							"key": "Allow",
+							"value": "GET, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Content-Length",
+							"value": "345"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.8.10"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 26 Feb 2022 19:23:08 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"Operator\": \"AO\",\n        \"Status\": \"You owe them\",\n        \"Amount\": 574.55\n    },\n    {\n        \"Operator\": \"GF\",\n        \"Status\": \"They owe you\",\n        \"Amount\": 181.35\n    },\n    {\n        \"Operator\": \"EG\",\n        \"Status\": \"You owe them\",\n        \"Amount\": 66.25\n    },\n    {\n        \"Operator\": \"MR\",\n        \"Status\": \"They owe you\",\n        \"Amount\": 7.4\n    },\n    {\n        \"Operator\": \"NE\",\n        \"Status\": \"You owe them\",\n        \"Amount\": 281.95\n    },\n    {\n        \"Operator\": \"OO\",\n        \"Status\": \"You owe them\",\n        \"Amount\": 144.65\n    }\n]"
+				}
+			]
+		}
+	]
+}

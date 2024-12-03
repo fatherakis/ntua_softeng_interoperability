@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2> View settlements. </h2>
+
+  <form method="POST" action="SettlementsForm/fetch">
+    {% csrf_token %}
+
+    {{ operator }}
+
+    <button type="submit">Compute settlements</button>
+  </form>
+
+{% endblock %}

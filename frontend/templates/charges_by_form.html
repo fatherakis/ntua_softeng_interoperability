@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h2> Get the total charges owed to <em>Operator</em> from other operators. </h2>
+
+  <form method="POST" action="ChargesByForm/fetch">
+    {% csrf_token %}
+
+    {{ operator }}
+    <label for="from">From:</label>
+    <input type="date" id="from" name="from">
+    <label for="to">To:</label>
+    <input type="date" id ="to" name="to">
+    
+    <button type="submit">Get charges owed</button>
+  </form>
+    
+{% endblock %}
