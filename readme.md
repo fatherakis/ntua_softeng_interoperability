@@ -1,5 +1,6 @@
-NTUA Software Engineering Course 2022 
-Toll Interoperability Project
+NTUA Software Engineering Course 2022
+
+## Toll Interoperability Project
 
 This was a 5 person group project for the semester requiring to learn multiple tools from front-end to back-end development
 along with other time and task managment tools enchancing productivity and group effort.
